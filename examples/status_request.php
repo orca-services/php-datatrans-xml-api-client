@@ -26,5 +26,3 @@ $error = $statusRequest->getError();
 var_dump($error);
 $response = $statusRequest->getResponse();
 var_dump($response);
-
-

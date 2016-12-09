@@ -21,28 +21,30 @@ namespace OrcaServices\Datatrans\Xml\Api\Request;
  *
  * @see https://www.datatrans.ch/showcase/settlement/xml-credit-request
  */
-class Credit extends Base {
+class Credit extends Base
+{
 
-	/**
-	 * The XML API Endpoint URL
-	 *
-	 * @var string
-	 */
-	protected $_apiUrl = 'XML_processor.jsp';
+    /**
+     * The XML API Endpoint URL
+     *
+     * @var string
+     */
+    protected $_apiUrl = 'XML_processor.jsp';
 
-	/**
-	 * The XML schema to validate the request & response against
-	 *
-	 * @var string
-	 */
-	protected $_xmlSchema = 'payment.xsd';
+    /**
+     * The XML schema to validate the request & response against
+     *
+     * @var string
+     */
+    protected $_xmlSchema = 'payment.xsd';
 
-	protected function _buildRequestXml() {
-		// TODO: Implement _buildRequestXml() method.
-	}
+    protected function _buildRequestXml()
+    {
+        // TODO: Implement _buildRequestXml() method.
+    }
 
-	protected function _processResponse($responseXml) {
-		// TODO: Implement _processResponse() method.
-	}
-
+    protected function _processResponse($responseXml)
+    {
+        // TODO: Implement _processResponse() method.
+    }
 }

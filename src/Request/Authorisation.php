@@ -33,28 +33,30 @@ namespace OrcaServices\Datatrans\Xml\Api\Request;
  *
  * @see https://www.datatrans.ch/showcase/authorisation/xml-authorisation
  */
-class Authorisation extends Base {
+class Authorisation extends Base
+{
 
-	/**
-	 * The XML API Endpoint URL
-	 *
-	 * @var string
-	 */
-	protected $_apiUrl = 'XML_authorize.jsp';
+    /**
+     * The XML API Endpoint URL
+     *
+     * @var string
+     */
+    protected $_apiUrl = 'XML_authorize.jsp';
 
-	/**
-	 * The XML schema to validate the request & response against
-	 *
-	 * @var string
-	 */
-	protected $_xmlSchema = 'authorization.xsd';
+    /**
+     * The XML schema to validate the request & response against
+     *
+     * @var string
+     */
+    protected $_xmlSchema = 'authorization.xsd';
 
-	protected function _buildRequestXml() {
-		// TODO: Implement _buildRequestXml() method.
-	}
+    protected function _buildRequestXml()
+    {
+        // TODO: Implement _buildRequestXml() method.
+    }
 
-	protected function _processResponse($responseXml) {
-		// TODO: Implement _processResponse() method.
-	}
-
+    protected function _processResponse($responseXml)
+    {
+        // TODO: Implement _processResponse() method.
+    }
 }
