@@ -15,6 +15,7 @@ TODO
 - Logger integration
 - Support for "Digital signature" (sign & sign2)
 - Better request & response abstraction
+- Status API request  type Switch (STA/STX)
 
 Similar Projects
 ----------------
