@@ -13,6 +13,7 @@ TODO
 - Travis CI integration
 - Scrutinizer CI integration
 - Logger integration
+- Support for "Digital signature" (sign & sign2)
 
 Similar Projects
 ----------------
