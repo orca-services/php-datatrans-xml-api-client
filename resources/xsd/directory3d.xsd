@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/base.xsd"/>
+
+    <xs:element name="directory3dService">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="body" minOccurs="0">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="transaction">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="request">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element name="currency"/>
+                                                    <xs:element name="aliasCC"/>
+
+                                                    <xs:element name="uppModuleName" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="uppModuleVersion" type="xs:string"  minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:choice minOccurs="0">
+                                            <xs:element name="response" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:complexType>
+                                                    <xs:all>
+                                                        <xs:element name="enrolled"/>
+                                                        <xs:element name="uppTransactionId" type="uppTransactionId"/>
+                                                        <xs:element name="maskedCC"/>
+                                                    </xs:all>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="error" type="error"/>
+                                        </xs:choice>
+                                    </xs:sequence>
+
+                                    <xs:attribute name="trxStatus" type="trxStatus" use="optional">
+                                        <xs:annotation>
+                                            <xs:documentation>Returned in response</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="error" type="error" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Returned in response when the body element has errors (e.g. merchantId is invalid)</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+                        </xs:all>
+
+                        <xs:attribute name="merchantId" type="merchantIdType" use="required">
+                            <xs:annotation>
+                                <xs:documentation>Unique Merchant Identifier (allocated by Datatrans at merchant registration process)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+
+                        <xs:attribute name="status" type="status" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Returned in response</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+
+                        <xs:attribute name="testOnly" type="yesno" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="error" type="error" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Returned in response when the XML request is invalid</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+            </xs:sequence>
+
+            <xs:attribute type="xs:string" name="version" use="required" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

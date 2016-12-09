@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/base.xsd"/>
+	
+	<xs:element name="uppTransactionService">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="body">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="transaction">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="uppTransactionId" type="uppTransactionId">
+										</xs:element>
+										<xs:element name="amount" type="xs:string">
+										</xs:element>
+										<xs:element name="currency" type="currency">
+										</xs:element>
+										<xs:element name="pmethod" type="xs:string">
+										</xs:element>
+										<xs:element name="reqtype" type="xs:string">
+										</xs:element>
+										<xs:element name="language" type="xs:string">
+										</xs:element>
+										
+										<xs:choice>
+										
+											<xs:element name="success">
+												<xs:complexType>
+													<xs:sequence>													
+														<xs:element name="authorizationCode" type="xs:string">
+														</xs:element>
+														<xs:element name="acqAuthorizationCode" type="xs:string">
+														</xs:element>
+														<xs:element name="responseMessage" type="xs:string">
+														</xs:element>
+														<xs:element name="responseCode" type="xs:string">
+														</xs:element>											
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											
+											<xs:element name="error">
+												<xs:complexType>
+													<xs:sequence>													
+														<xs:element name="errorCode" type="xs:string">
+														</xs:element>
+														<xs:element name="errorMessage" type="xs:string">
+														</xs:element>
+														<xs:element name="errorDetail" type="xs:string">
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										
+										</xs:choice>
+										
+										<xs:element name="userParameters">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="parameter"  minOccurs="0" maxOccurs="unbounded">														
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute type="xs:string" name="name"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="refno" use="required">
+										<xs:annotation>
+											<xs:documentation>Merchant reference number; note: unique value for PayPal; can be defined as unique value for all other payment methods, too. Please refer to support@datatrans.ch for details.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="status" type="xs:string">										
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>			
+						</xs:all>
+						<xs:attribute name="merchantId" type="merchantIdType" use="required">
+							<xs:annotation>
+								<xs:documentation>Unique Merchant Identifier (allocated by Datatrans at merchant registration process)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute type="xs:string" name="testOnly" use="optional">
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="version" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

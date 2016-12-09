@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/paymentTypes.xsd"/>
+	<xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/base.xsd"/>
+	
+	<xs:element name="authorizationService">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="body" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="transaction" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="request">
+											<xs:complexType>
+												<xs:all>
+                                                    <xs:element name="transtype" type="transtype" minOccurs="0"/>
+													<xs:element name="amount">
+														<xs:annotation>
+															<xs:documentation>Transaction amount in cents or smallest available unit of the currency
+															</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:long">
+																<xs:minInclusive value="0" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="currency" type="currency"/>
+                                                    <xs:element name="cardno" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="cardnoEncr" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="track2" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="virtualCardno" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="useAlias" type="xs:string" minOccurs="0"/>
+													<xs:element name="aliasCC" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																Credit card number alias; required for credit card transactions only
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													
+													<xs:element name="expm" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																Expiry month of the card
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="expy" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																Expiry year of the card
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													
+													<xs:element name="cvv" type="xs:string" minOccurs="0"/>
+													
+													<xs:element name="pmethod" type="xs:string" minOccurs="0"/>
+
+													<xs:element name="uppCustomerDetails" minOccurs="0">
+														<xs:complexType>
+															<xs:all>
+                                                                <xs:element name="uppCustomerType" type="uppCustomerType" minOccurs="0"/>
+																<xs:element name="uppCustomerGender" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerFirstName" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerLastName" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="uppCustomerName" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerStreet" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="uppCustomerStreet2" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerCity" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerZipCode" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerBirthDate" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerLanguage" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerEmail" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerCountry" type="xs:string" minOccurs="0"/>
+																<xs:element name="uppCustomerIpAddress" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="uppCustomerPhone" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="uppCustomerId" type="xs:string" minOccurs="0"/>
+																<xs:element name="mfaReference" type="xs:string" minOccurs="0"/>
+															</xs:all>
+                                                            <xs:attribute name="storeDetails" use="optional">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="yes"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+														</xs:complexType>
+													</xs:element>
+													
+													<xs:element name="bankaccount" type="xs:string" minOccurs="0"/>
+													<xs:element name="bankrouting" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="bankiban" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="bankbic" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="elvMandateID" type="xs:string" minOccurs="0"/>
+
+                                                    <xs:element name="refno2" type="xs:string" minOccurs="0"/>
+													
+													<xs:element name="PayPalBillingAgreementId" type="xs:string" minOccurs="0"/>
+
+													<xs:element name="reqtype" minOccurs="0">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="NOA" />
+																<xs:enumeration value="CAA" />
+																<xs:enumeration value="SCN" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element type="xs:string" name="sign" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation> According to merchant’s security level setting
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+                                                    <xs:element type="xs:string" name="sign2" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation> According to merchant’s security level setting
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+													<xs:element name="parameters_3d" minOccurs="0">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="ACS"/>																
+																<xs:element name="uppTransactionId" type="uppTransactionId"/>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="shoppingCartType" type="xs:string" minOccurs="0" />
+													<xs:element name="installmentType" type="xs:string" minOccurs="0" />
+
+                                                    <xs:element name="uppModuleName" type="xs:string" minOccurs="0" />
+                                                    <xs:element name="uppModuleVersion" type="xs:string" minOccurs="0" />
+
+                                                    <xs:element name="acqAuthorizationCode" type="xs:string" minOccurs="0" />
+                                                    <xs:element name="offlineAuthorization" type="offlineAuthorizationType" minOccurs="0" />
+
+                                                    <xs:element name="trxDate" type="dateYYYYMMDD" minOccurs="0" />
+                                                    <xs:element name="trxTime" type="timeHHMMSS" minOccurs="0" />
+                                                    
+                                                    <xs:element name="AIRLINEDATA" type="AIRLINEDATA" minOccurs="0"/>
+                                                    
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										
+										<xs:choice minOccurs="0">
+											<xs:element name="response">
+												<xs:complexType>
+													<xs:all>
+														<xs:element name="responseCode"/>
+														<xs:element name="responseMessage"/>
+														<xs:element name="uppTransactionId" type="uppTransactionId"/>
+														<xs:element name="authorizationCode"/>
+														<xs:element name="acqAuthorizationCode" minOccurs="0"/>
+														<xs:element name="maskedCC" minOccurs="0"/>
+														<xs:element name="returnCustomerCountry" minOccurs="0"/>
+														<xs:element name="avsResult" minOccurs="0"/>
+														<xs:element name="cardnumber" type="xs:string" minOccurs="0"/>
+														<xs:element name="virtualCardno" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfaAvailableCredit" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfaMaximalCredit" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfaReference" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfaCreditRefusalReason" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfaResponseCode" type="xs:string" minOccurs="0"/>
+														<xs:element name="installmentNumber" type="xs:string" minOccurs="0"/>
+														<xs:element name="installmentAmount" type="xs:string" minOccurs="0"/>
+														<xs:element name="installmentFees" type="xs:string" minOccurs="0"/>
+														<xs:element name="installmentInterests" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfgBalance" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfgResponseCode" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfgResponseDate" type="xs:string" minOccurs="0"/>
+														<xs:element name="mfgExpirationDate" type="xs:string" minOccurs="0"/>
+	                          							<xs:element name="openAmount" type="xs:string" minOccurs="0"/>
+                                                        <xs:element name="bankibanConverted" type="xs:string" minOccurs="0"/>
+                                                        <xs:element name="elvMandateID" type="xs:string" minOccurs="0"/>
+                                                        <xs:element name="txtEp2TrxID" type="xs:string" minOccurs="0"/>
+													</xs:all>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="error" type="authorizationError"/>
+										</xs:choice>
+										
+									</xs:sequence>
+									<xs:attribute name="refno" use="required">
+										<xs:annotation>
+											<xs:documentation>Merchant reference number; note: unique value for PayPal; can be defined as unique value for all other payment methods, too. Please refer to support@datatrans.ch for details.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+
+									
+									<xs:attribute name="trxStatus" type="trxStatus" use="optional">
+										<xs:annotation>
+											<xs:documentation>Returned in response</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							
+							<xs:element name="error" minOccurs="0" type="error">
+								<xs:annotation>
+									<xs:documentation>Returned in response when the body element has errors (e.g. merchantId is invalid)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+						</xs:all>
+						<xs:attribute name="merchantId" type="merchantIdType"  use="required">
+							<xs:annotation>
+								<xs:documentation>Unique Merchant Identifier (allocated by Datatrans at merchant registration process)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="testOnly" type="yesno" use="optional" />
+						<xs:attribute name="status" type="status" use="optional">
+							<xs:annotation>
+								<xs:documentation>Returned in response</xs:documentation>
+							</xs:annotation>							
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				
+				<xs:element name="error" type="error" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Returned in response when the XML request is invalid</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="version" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+    <xs:simpleType name="offlineAuthorizationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="authorizationError">
+        <xs:complexContent>
+            <xs:extension base="error">
+                <xs:sequence>
+                    <xs:element name="returnCustomerCountry" type="xs:string" minOccurs="0"/>
+                    <xs:element name="txtEp2TrxID" type="xs:string" minOccurs="0"/>
+                    <xs:element name="mfaAvailableCredit" type="xs:string" minOccurs="0"/>
+                    <xs:element name="mfaMaximalCredit" type="xs:string" minOccurs="0"/>
+                    <xs:element name="responseCode" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

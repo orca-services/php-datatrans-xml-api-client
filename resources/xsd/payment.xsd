@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/paymentTypes.xsd"/>
+	<xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/base.xsd"/>
+	
+	<xs:element name="paymentService">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="body" minOccurs="0">
+					<xs:complexType>
+
+                        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+
+                            <xs:element name="transaction" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="request" minOccurs="0">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="amount" type="amountCents">
+														<xs:annotation>
+															<xs:documentation> Transaction amount in cents (the smallest unit of the currency) (e.g. 123.50 = 12350) Must not exceed the
+																authorized amount!
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+
+													<xs:element name="currency">
+														<xs:annotation>
+															<xs:documentation>Transaction currency - ISO character code (CHF)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="3" />
+																<xs:minLength value="3" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+
+                                                    <xs:element name="uppTransactionId" type="uppTransactionId"  minOccurs="0">
+														<xs:annotation>
+															<xs:documentation> Original and unique transaction id. Is returned with the authorization request!
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+
+                                                    <xs:element name="pmethod" type="xs:string" minOccurs="0"/>
+
+													<xs:element name="transtype" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation> 05 – debit transaction DEFAULT 06 – credit transaction
+															</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="06" />
+																<xs:enumeration value="05" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+
+                                                    <xs:element name="refno" type="refno" minOccurs="0"/>
+                                                    <xs:element name="refno2" type="refno" minOccurs="0"/>
+                                                    <xs:element name="refno3" type="refno" minOccurs="0"/>
+
+													<xs:element name="reqtype" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation> COA – Settlement debit (transtype 05 required) DEFAULT COA – Settlement credit (transtype 06 required),
+																only for settled transactions REF – Submission of acqAuthorizationCode after referral; requires acqAuthorizationCode;
+																changes status to authorized REC – Submission of acqAuthorizationCode after decline; requires acqAuthorizationCode; changes
+																status to settled STA – Transaction status request; see response codes below DOA – Transaction cancel request; used for
+																authorization reversal REA – Re-authorization of old transaction
+															</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="COA" />
+																<xs:enumeration value="REF" />
+																<xs:enumeration value="REC" />
+																<xs:enumeration value="STA" />
+																<xs:enumeration value="COD" />
+																<xs:enumeration value="REA" />
+                                                                <xs:enumeration value="HOA" />
+
+                                                                <xs:enumeration value="MOA" />
+                                                                <xs:enumeration value="DOA" />
+                                                                <xs:enumeration value="DAA" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+
+                                                    <xs:element type="xs:string" name="sign" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation> According to merchant’s security level setting
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+
+                                                    <xs:element type="xs:string" name="authorizationCode" minOccurs="0"/>
+													<xs:element type="xs:string" name="acqAuthorizationCode" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation> Required for reqtype REF and REC
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+
+                                                    <xs:element name="AIRDATA" type="AIRDATA" minOccurs="0"/>
+                                                    <xs:element name="AIRLINEDATA" type="AIRLINEDATA" minOccurs="0"/>
+                                                    <xs:element name="SWISSDATA" type="SWISSDATA" minOccurs="0"/>
+                                                    <xs:element name="addons" type="addons" minOccurs="0"/>
+
+
+
+                                                    <xs:element type="dateYYYYMMDD" name="transDate" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="ticketNumber" minOccurs="0"/>
+
+                                                    <xs:element name="netAmount" type="amountCents" minOccurs="0"/>
+
+                                                    <xs:element name="expm" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="expy" type="xs:string" minOccurs="0"/>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										
+										<xs:choice minOccurs="0">
+											<xs:element name="response">
+												<xs:complexType>
+													<xs:all>
+														<xs:element name="responseCode"/>
+														<xs:element name="responseMessage"/>
+														<xs:element name="uppTransactionId" type="uppTransactionId" minOccurs="0"/>
+														<xs:element name="authorizationCode" minOccurs="0"/>
+														<xs:element name="acqAuthorizationCode" minOccurs="0"/>
+														<xs:element name="receiptUrl" minOccurs="0"/>
+
+                                                        <xs:element name="accountNumber" minOccurs="0"/>
+                                                        <xs:element name="accountHolder" minOccurs="0"/>
+                                                        <xs:element name="bankName" minOccurs="0"/>
+                                                        <xs:element name="invoiceDueDate" minOccurs="0"/>
+                                                        <xs:element name="invoiceReference" minOccurs="0"/>
+                                                        <xs:element name="bankCode" minOccurs="0"/>
+													</xs:all>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="error" type="error"/>
+										</xs:choice>
+										
+									</xs:sequence>
+
+									<xs:attribute name="refno" type="refno" use="required">
+										<xs:annotation>
+											<xs:documentation>Merchant order reference number</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									
+									<xs:attribute name="trxStatus" type="trxStatus" use="optional">
+										<xs:annotation>
+											<xs:documentation>Returned in response</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+
+                            <xs:element name="error" type="error" minOccurs="0"/>
+
+                            <xs:element type="xs:string" name="errorEmail" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation> E-Mail address, one e-mail address can be used The system sends an e-mail to this address in case of a failed
+                                        set-tlement
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+						</xs:sequence>
+
+
+						<xs:attribute name="merchantId" type="merchantIdType" use="required">
+							<xs:annotation>
+								<xs:documentation> Unique Merchant Identifier (allocated by Datatrans at merchant registration process)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+                        <xs:attribute name="testOnly" type="yesno" use="optional" />
+						<xs:attribute name="status" type="status" use="optional">
+							<xs:annotation>
+								<xs:documentation>Returned in response</xs:documentation>
+							</xs:annotation>							
+						</xs:attribute>
+
+					</xs:complexType>
+				</xs:element>
+				
+				<xs:element name="error" minOccurs="0">
+					
+					<xs:annotation>
+						<xs:documentation>Returned in response when the XML request is invalid</xs:documentation>
+					</xs:annotation>
+					 
+				</xs:element>
+
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="version" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

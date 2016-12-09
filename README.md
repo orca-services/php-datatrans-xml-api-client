@@ -1,2 +1,15 @@
-# php-datatrans-xml-api-client
-A PHP client library for the Datatrans Payment XML API
+Datatrans Payment XML API PHP Client
+====================================
+
+A PHP client library for the [Datatrans Payment XML API](https://www.datatrans.ch/showcase/).
+
+TODO
+----
+
+- Documentation
+- Authorisation API
+- Settlement API
+- Unit tests
+- Travis CI integration
+- Scrutinizer CI integration
+- Logger integration

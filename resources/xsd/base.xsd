@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:simpleType name="uppTransactionId">
+		<xs:annotation>
+			<xs:documentation>Numeric 18 digits</xs:documentation>
+		</xs:annotation>
+
+		<xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{18}" />
+        </xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="blank">
+        <xs:restriction base="xs:string">
+            <xs:length value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="uppTransactionIdOrBlank">
+        <xs:union memberTypes="uppTransactionId blank" />
+    </xs:simpleType>
+
+	<xs:complexType name="error">
+		<xs:sequence>
+			<xs:element name="errorCode" type="xs:string" />
+			<xs:element name="errorMessage" type="xs:string" />
+			<xs:element name="errorDetail" type="xs:string" />
+            <xs:element name="uppTransactionId" type="uppTransactionId" minOccurs="0"/>
+            <xs:element name="acqErrorCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="trxStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="error" />
+			<xs:enumeration value="response" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="status">
+		<xs:annotation>
+			<xs:documentation>Returned in response</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="accepted" />
+			<xs:enumeration value="error" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="refno">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+	<xs:simpleType name="currency">
+		<xs:annotation>
+			<xs:documentation>Transaction currency – ISO Character Code (CHF,
+				USD, EUR etc.)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3" />
+			<xs:minLength value="3" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="transtype">
+        <xs:annotation>
+            <xs:documentation>Transaction type - 05 debit, 06 credit</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="05"/>
+            <xs:enumeration value="06"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="uppCustomerType">
+        <xs:annotation>
+            <xs:documentation>Customer type 'P' - person, 'C' - company</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="C"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="merchantIdType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="30" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="yesno">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="yes"/>
+            <xs:enumeration value="no"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dateYYYYMMDD">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{8}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="timeHHMMSS">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4,6}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="amountCents">
+        <xs:restriction base="xs:long">
+            <xs:minInclusive value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

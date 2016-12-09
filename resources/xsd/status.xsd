@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/base.xsd"/>
+	
+	<xs:element name="statusService">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="body" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="transaction">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="request">
+											<xs:complexType>												
+												<xs:all>
+                                                    <xs:element name="uppTransactionId" type="uppTransactionIdOrBlank" minOccurs="0"/>
+                                                    <xs:element name="authorizationCode" minOccurs="0"/>
+                                                    <xs:element name="refno" minOccurs="0"/>
+													
+													<xs:element name="reqtype" minOccurs="0">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="STA" />
+																<xs:enumeration value="STX" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+
+                                                    <xs:element name="returnAcqAuthorizationCode" minOccurs="0"/>
+                                                    <xs:element name="returnCardno" minOccurs="0"/>
+                                                    <xs:element name="sign" minOccurs="0"/>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										
+										<xs:choice minOccurs="0">
+											<xs:element name="response" minOccurs="0" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:all>
+														<xs:element name="responseCode"/>
+														<xs:element name="responseMessage"/>
+														<xs:element name="refno"/>
+														<xs:element name="amount"/>
+														<xs:element name="currency"/>
+														<xs:element name="authorizationCode"/>
+														<xs:element name="pmethod"/>
+														
+														<!-- STX elements -->
+														<xs:element name="uppTransactionId" type="uppTransactionIdOrBlank" minOccurs="0"/>
+														<xs:element name="maskedCC" minOccurs="0"/>
+														<xs:element name="aliasCC" minOccurs="0"/>
+														<xs:element name="expm" minOccurs="0"/>
+														<xs:element name="expy" minOccurs="0"/>
+														<xs:element name="trxDate" minOccurs="0"/>
+														<xs:element name="trxTime" minOccurs="0"/>
+														<xs:element name="trtype" minOccurs="0"/>
+														<xs:element name="errorCode" minOccurs="0"/>
+														<xs:element name="errorMessage" minOccurs="0"/>
+														<xs:element name="errorDetail" minOccurs="0"/>
+														<xs:element name="acqErrorCode" minOccurs="0"/>
+														<xs:element name="settledAmount" minOccurs="0"/>
+
+                                                        <xs:element name="acqAuthorizationCode" minOccurs="0"/>
+                                                        <xs:element name="cardno" minOccurs="0"/>
+													</xs:all>
+													<xs:attribute name="itemNr" use="optional"/>
+												</xs:complexType>												
+											</xs:element>
+											<xs:element name="error" type="error"/>
+										</xs:choice>
+									</xs:sequence>
+									
+									<xs:attribute name="trxStatus" type="trxStatus" use="optional">
+										<xs:annotation>
+											<xs:documentation>Returned in response</xs:documentation>
+										</xs:annotation>										
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							
+							<xs:element name="error" type="error" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Returned in response when the body element has errors (e.g. merchantId is invalid)</xs:documentation>
+								</xs:annotation>								
+							</xs:element>
+							
+						</xs:all>
+						
+						<xs:attribute name="merchantId" type="merchantIdType" use="required">
+							<xs:annotation>
+								<xs:documentation>Unique Merchant Identifier (allocated by Datatrans at merchant registration process)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						
+						<xs:attribute name="status" type="status" use="optional">
+							<xs:annotation>
+								<xs:documentation>Returned in response</xs:documentation>
+							</xs:annotation>							
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				
+				<xs:element name="error" type="error" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Returned in response when the XML request is invalid</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				
+			</xs:sequence>
+			
+			<xs:attribute type="xs:string" name="version" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

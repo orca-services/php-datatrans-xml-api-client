@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/paymentTypes.xsd"/>
+    <xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/base.xsd"/>
+
+    <xs:element name="authorizationSplit">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="body" minOccurs="0">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="transaction" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="request">
+                                            <xs:complexType>
+                                                <xs:all>
+
+                                                    <xs:element name="amount" type="amountCents" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation> Transaction amount in cents (the smallest unit of the currency) (e.g. 123.50 = 12350) Must not exceed the
+                                                                authorized amount!
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+
+                                                    <xs:element name="currency" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Transaction currency - ISO character code (CHF)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="3" />
+                                                                <xs:minLength value="3" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+
+                                                    <xs:element name="uppTransactionId" type="uppTransactionIdOrBlank" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Original and unique transaction id. Is returned with the authorization request!
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+
+                                                    <xs:element name="reqtype" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="NOA"/>
+                                                                <xs:enumeration value="CAA"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+
+                                                    <xs:element name="cdm" minOccurs="0"/>
+
+                                                    <xs:element name="uppModuleName" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="uppModuleVersion" type="xs:string" minOccurs="0"/>
+                                                    
+                                                    <xs:element name="AIRLINEDATA" type="AIRLINEDATA" minOccurs="0"/>
+
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:choice minOccurs="0">
+                                            <xs:element name="response">
+                                                <xs:complexType>
+                                                    <xs:all>
+                                                        <xs:element name="responseCode"/>
+                                                        <xs:element name="responseMessage"/>
+                                                        <xs:element name="authorizationCode"/>
+                                                        <xs:element name="acqAuthorizationCode" minOccurs="0"/>
+                                                        <xs:element name="maskedCC" minOccurs="0"/>
+                                                        <xs:element name="avsResult" minOccurs="0"/>
+                                                        <xs:element name="txtEp2TrxID" minOccurs="0"/>
+                                                        <xs:element name="PayPalBillingAgreementId" minOccurs="0"/>
+                                                        <xs:element name="ppPayerID" minOccurs="0"/>
+                                                    </xs:all>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="error" type="authorizationSplitError"/>
+                                        </xs:choice>
+
+                                    </xs:sequence>
+                                    <xs:attribute name="refno" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>Merchant reference number; note: unique value for PayPal; can be defined as unique value for all other payment methods, too. Please refer to support@datatrans.ch for details.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+
+
+                                    <xs:attribute name="trxStatus" type="trxStatus" use="optional">
+                                        <xs:annotation>
+                                            <xs:documentation>Returned in response</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="error" minOccurs="0" type="error">
+                                <xs:annotation>
+                                    <xs:documentation>Returned in response when the body element has errors (e.g. merchantId is invalid)</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+                        </xs:all>
+                        <xs:attribute name="merchantId" type="merchantIdType" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Unique Merchant Identifier (allocated by Datatrans at merchant registration process)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+
+                        <xs:attribute name="testOnly" type="yesno" use="optional" />
+
+                        <xs:attribute name="status" type="status" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Returned in response</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="error" type="error" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Returned in response when the XML request is invalid</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="version" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="authorizationSplitError">
+        <xs:complexContent>
+            <xs:extension base="error">
+                <xs:sequence>
+
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

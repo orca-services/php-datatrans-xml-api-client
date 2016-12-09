@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:complexType name="SWISSDATA">
+        <xs:sequence>
+            <xs:element name="Swiss"/>
+            <xs:element name="AgentCode"/>
+            <xs:element name="CountryCode"/>
+            <xs:element name="AmountCHF"/>
+            <xs:element name="SourceId"/>
+            <xs:element name="ReportNo"/>
+            <xs:element name="TaxAmount"/>
+            <xs:element name="PNR"/>
+            <xs:element name="SourceFilename"/>
+            <xs:element name="Source"/>
+            <xs:element name="SourceFileID"/>
+            <xs:element name="IssueDate"/>
+            <xs:element name="ServiceType"/>
+
+            <xs:element name="Ticket" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="TicketNumber"/>
+                        <xs:element name="PassengerName"/>
+                        <xs:element name="DescrCode"/>
+                        <xs:element name="Flight" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Origin"/>
+                                    <xs:element name="Destination"/>
+                                    <xs:element name="Carrier" minOccurs="0"/>
+                                    <xs:element name="Class" minOccurs="0"/>
+                                    <xs:element name="FareBasis" minOccurs="0"/>
+                                    <xs:element name="FlightNumber" minOccurs="0"/>
+                                    <xs:element name="FlightDate" minOccurs="0"/>
+                                </xs:sequence>
+                                <xs:attribute name="nr"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="nr"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AIRLINEDATA">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="CountryCode"/>
+            <xs:element name="PNR"/>
+            <xs:element name="AgentCode"/>
+            <xs:element name="IssueDate"/>
+            <xs:element name="Ticket">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="TicketNumber"/>
+                        <xs:element name="PassengerName"/>
+                        <xs:element name="DescrCode"/>
+                        <xs:element name="Flight">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Origin"/>
+                                    <xs:element name="Destination"/>
+                                    <xs:element name="Carrier" minOccurs="0"/>
+                                    <xs:element name="Class" minOccurs="0"/>
+                                    <xs:element name="FareBasis" minOccurs="0"/>
+                                    <xs:element name="FlightNumber" minOccurs="0"/>
+                                    <xs:element name="FlightDate" minOccurs="0"/>
+                                </xs:sequence>
+                                <xs:attribute name="nr"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="nr"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="AIRDATA">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="ZIBVATTotalAmount"/>
+            <xs:element name="DBIOrderDate"/>
+            <xs:element name="DBIRef1"/>
+            <xs:element name="ZIBDescriptionTxt"/>
+            <xs:element name="DBIRef2"/>
+            <xs:element name="ZIGPosition">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="ZIGOrigin"/>
+                        <xs:element name="ZIGDiscount"/>
+                        <xs:element name="ZIGVATRate"/>
+                        <xs:element name="ZIGArticleCode"/>
+                        <xs:element name="ZIGGrossAmt"/>
+                        <xs:element name="ZIGTicketFareAmt"/>
+                        <xs:element name="ZIGArticleType"/>
+                        <xs:element name="ZIGVATAmt"/>
+                        <xs:element name="ZIGDossier"/>
+                        <xs:element name="ZIGClass"/>
+                        <xs:element name="ZIGDestination"/>
+                        <xs:element name="ZIGDeliveryMethodCode"/>
+                        <xs:element name="ZIGDepartDate"/>
+                    </xs:all>
+                    <xs:attribute name="number"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ZIBInvoiceTotalAmt"/>
+            <xs:element name="ZIBPersNumberDBI"/>
+            <xs:element name="ZIBSaleCountry"/>
+            <xs:element name="ZIBPassengerName"/>
+            <xs:element name="DBICost2"/>
+            <xs:element name="DBICost1"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="addons">
+        <xs:all>
+            <xs:element name="Funktion" minOccurs="0"/>
+            <xs:element name="Geraetetyp" minOccurs="0"/>
+            <xs:element name="Dienststelle" minOccurs="0"/>
+            <xs:element name="Dienst" minOccurs="0"/>
+            <xs:element name="Billettquelle" minOccurs="0"/>
+            <xs:element name="Kasse" minOccurs="0"/>
+            <xs:element name="Abrechnungsmonat" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

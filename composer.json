@@ -1,0 +1,51 @@
+{
+  "name": "orca-services/datatrans-xml-api-client",
+  "description": "A client library for the Datatrans Payment XML API",
+  "type": "library",
+  "minimum-stability": "stable",
+  "homepage": "https://github.com/orca-services/php-datatrans-xml-api-client",
+  "license": "MIT",
+  "keywords": [
+    "Datratrans",
+    "Payment",
+    "XML",
+    "API",
+    "Client"
+  ],
+  "authors": [
+    {
+      "name": "Marc Würth",
+      "email": "marc.wuerth@orca-services.ch",
+      "role": "Lead developer",
+      "homepage": "https://www.orca-services.ch"
+    },
+    {
+      "name": "Other contributors",
+      "homepage": "https://github.com/orca-services/php-datatrans-xml-api-client/graphs/contributors",
+      "role": "Contributors"
+    }
+  ],
+  "support": {
+    "email": "development@orca-services.ch",
+    "source": "https://github.com/orca-services/php-datatrans-xml-api-client",
+    "issues": "https://github.com/orca-services/php-datatrans-xml-api-client/issues"
+},
+  "require": {
+    "php": ">=5.5.9",
+    "guzzlehttp/guzzle": "^6.2",
+    "composer/ca-bundle": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "OrcaServices\\Datatrans\\Xml\\Api\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OrcaServices\\Datatrans\\Xml\\Api\\Test\\": "tests"
+    }
+  }
+}

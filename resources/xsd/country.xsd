@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="https://payment.datatrans.biz/upp/schema/base.xsd"/>
+
+    <xs:element name="binService">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="body" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="request">
+                                <xs:complexType>
+                                   <xs:sequence>
+                                        <xs:element name="bin" type="xs:string"/>
+                                   </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:choice minOccurs="0">
+                                <xs:element name="response" minOccurs="0" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:all>
+                                            <xs:element name="countryCode"/>
+                                            <xs:element name="countryIso2Code"/>
+                                        </xs:all>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="error">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="errorCode" type="xs:string" />
+                                            <xs:element name="errorMessage" type="xs:string" />
+                                            <xs:element name="errorDetail" type="xs:string" />
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:choice>
+
+                        </xs:sequence>
+
+                        <xs:attribute name="merchantId" type="merchantIdType" use="required">
+                            <xs:annotation>
+                                <xs:documentation>Unique Merchant Identifier (allocated by Datatrans at merchant registration process)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+
+                        <xs:attribute name="status" type="status" use="optional">
+                            <xs:annotation>
+                                <xs:documentation>Returned in response</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="error" type="error" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Returned in response when the XML request is invalid</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+
+            <xs:attribute type="xs:string" name="version" use="required" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
