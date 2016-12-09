@@ -144,7 +144,7 @@ class Factory
      *
      * @return Client
      */
-    protected function _getHttpClient()
+    protected static function _getHttpClient()
     {
         if (!static::$_client) {
             static::$_client = new Client();
