@@ -14,6 +14,7 @@ TODO
 - Scrutinizer CI integration
 - Logger integration
 - Support for "Digital signature" (sign & sign2)
+- Better request & response abstraction
 
 Similar Projects
 ----------------
