@@ -210,6 +210,7 @@ abstract class Base
      * Get the full path to the XML schema file
      *
      * @return string The full path to the XML schema file.
+     * @throws  Exception When not XMl schema was found.
      */
     protected function _getXmlSchema()
     {
