@@ -20,7 +20,7 @@ $amount = 100; // 1.00
 $settlementRequest = Factory::settlement($merchantId, $uppTransactionId, $refNo, $currency, $amount);
 
 // Disable request and response validation
-$settlementRequest->setValidate(false);
+//$settlementRequest->setValidate(false);
 
 // Execute the request
 $settlementRequest->execute();
