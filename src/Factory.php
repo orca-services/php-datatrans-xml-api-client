@@ -68,7 +68,7 @@ class Factory
      */
     public static function authorisation($merchantId, $uppTransactionId)
     {
-        $httpClient = static::_getHttpClient();
+        $httpClient = static::httpClient();
         $request = new Authorisation($httpClient, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
@@ -87,7 +87,7 @@ class Factory
      */
     public static function cancel($merchantId, $uppTransactionId, $refNo, $currency, $amount)
     {
-        $httpClient = static::_getHttpClient();
+        $httpClient = static::httpClient();
         $request = new Cancel($httpClient, $merchantId, $uppTransactionId, $refNo, $currency, $amount);
         $request->setUseProdEnv(static::$_useProdEnv);
 
@@ -106,7 +106,7 @@ class Factory
      */
     public static function credit($merchantId, $uppTransactionId, $refNo, $currency, $amount)
     {
-        $httpClient = static::_getHttpClient();
+        $httpClient = static::httpClient();
         $request = new Credit($httpClient, $merchantId, $uppTransactionId, $refNo, $currency, $amount);
         $request->setUseProdEnv(static::$_useProdEnv);
 
@@ -125,7 +125,7 @@ class Factory
      */
     public static function settlement($merchantId, $uppTransactionId, $refNo, $currency, $amount)
     {
-        $httpClient = static::_getHttpClient();
+        $httpClient = static::httpClient();
         $request = new Settlement($httpClient, $merchantId, $uppTransactionId, $refNo, $currency, $amount);
         $request->setUseProdEnv(static::$_useProdEnv);
 
@@ -141,7 +141,7 @@ class Factory
      */
     public static function status($merchantId, $uppTransactionId)
     {
-        $httpClient = static::_getHttpClient();
+        $httpClient = static::httpClient();
         $request = new Status($httpClient, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
@@ -151,12 +151,15 @@ class Factory
     /**
      * Get the HTTP client
      *
+     * Overwrites the previous client when given new options.
+     *
+     * @param array $options The optional request options.
      * @return Client The HTTP client.
      */
-    protected static function _getHttpClient()
+    public static function httpClient($options = array())
     {
-        if (!static::$_client) {
-            static::$_client = new Client();
+        if (!static::$_client || !empty($options)) {
+            static::$_client = new Client($options);
         }
         return static::$_client;
     }

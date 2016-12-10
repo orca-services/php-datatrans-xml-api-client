@@ -2,7 +2,6 @@
 
 namespace OrcaServices\Datatrans\Xml\Api\Request;
 
-use Composer\CaBundle\CaBundle;
 use \DOMDocument;
 use \Exception;
 use GuzzleHttp\Client;
@@ -179,7 +178,6 @@ abstract class Base
 
         $response = $this->_client->post($apiUrl, array(
             'body' => $requestXML,
-            'verify' => CaBundle::getBundledCaBundlePath(),
         ));
 
         $responseXml = $response->getBody()->getContents();
