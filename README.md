@@ -16,6 +16,7 @@ TODO
 - Support for "Digital signature" (sign & sign2)
 - Better request & response abstraction
 - Status API request  type Switch (STA/STX)
+- API version switch support
 - Consider using [HTTPlug](http://httplug.io/)
 
 Similar Projects
