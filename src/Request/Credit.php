@@ -35,7 +35,7 @@ class Credit extends SettlementBase
         $requestChild->addChild('uppTransactionId', $this->_uppTransactionId);
         $requestChild->addChild('amount', $this->_amount);
         $requestChild->addChild('currency', $this->_currency);
-
-        // TODO Set Credit specific elements
+        $transType = '06';
+        $requestChild->addChild('transtype', $transType);
     }
 }
