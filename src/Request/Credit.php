@@ -21,30 +21,21 @@ namespace OrcaServices\Datatrans\Xml\Api\Request;
  *
  * @see https://www.datatrans.ch/showcase/settlement/xml-credit-request
  */
-class Credit extends Base
+class Credit extends SettlementBase
 {
 
     /**
-     * The XML API Endpoint URL
+     * Set the elements for the Request XML
      *
-     * @var string
+     * @param \SimpleXMLElement $requestChild The request XML element to set the elements into.
+     * @return void
      */
-    protected $_apiUrl = 'XML_processor.jsp';
-
-    /**
-     * The XML schema to validate the request & response against
-     *
-     * @var string
-     */
-    protected $_xmlSchema = 'payment.xsd';
-
-    protected function _buildRequestXml()
+    protected function _setRequestXmlElements($requestChild)
     {
-        // TODO: Implement _buildRequestXml() method.
-    }
+        $requestChild->addChild('uppTransactionId', $this->_uppTransactionId);
+        $requestChild->addChild('amount', $this->_amount);
+        $requestChild->addChild('currency', $this->_currency);
 
-    protected function _processResponse($responseXml)
-    {
-        // TODO: Implement _processResponse() method.
+        // TODO Set Credit specific elements
     }
 }
