@@ -72,11 +72,11 @@ abstract class Base
     protected $_merchantId;
 
     /**
-     * The transaction reference number
+     * The unique transaction id
      *
      * @var int
      */
-    protected $_transactionRefNo;
+    protected $_uppTransactionId;
 
     /**
      * The response data, if the request succeeded
@@ -97,12 +97,12 @@ abstract class Base
      *
      * @param $guzzle
      * @param string $merchantId The merchant ID.
-     * @param string $transactionRefNo The transaction reference number, e.g. 274815.
+     * @param string $uppTransactionId The unique transaction id, e.g. 274815.
      */
-    public function __construct($guzzle, $merchantId, $transactionRefNo)
+    public function __construct($guzzle, $merchantId, $uppTransactionId)
     {
         $this->setMerchantId($merchantId);
-        $this->setTransactionRefNo($transactionRefNo);
+        $this->setUppTransactionId($uppTransactionId);
         $this->_client = $guzzle;
     }
 
@@ -149,14 +149,14 @@ abstract class Base
     }
 
     /**
-     * Set the transaction reference number
+     * Set the unique transaction id
      *
-     * @param string $transactionRefNo The transaction reference number, e.g. 274815.
+     * @param string $uppTransactionId The unique transaction id, e.g. 274815.
      * @return self
      */
-    public function setTransactionRefNo($transactionRefNo)
+    public function setUppTransactionId($uppTransactionId)
     {
-        $this->_transactionRefNo = $transactionRefNo;
+        $this->_uppTransactionId = $uppTransactionId;
 
         return $this;
     }

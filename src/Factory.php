@@ -63,13 +63,13 @@ class Factory
      * Create a Authorisation Request
      *
      * @param string $merchantId The merchant ID.
-     * @param string $transactionRefNo The transaction reference number, e.g. 274815.
+     * @param string $uppTransactionId The unique transaction id, e.g. 274815.
      * @return Authorisation A Authorisation request object ready to execute.
      */
-    public static function authorisation($merchantId, $transactionRefNo)
+    public static function authorisation($merchantId, $uppTransactionId)
     {
         $guzzle = static::_getHttpClient();
-        $request = new Authorisation($guzzle, $merchantId, $transactionRefNo);
+        $request = new Authorisation($guzzle, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -79,13 +79,13 @@ class Factory
      * Create a Cancel Request
      *
      * @param string $merchantId The merchant ID.
-     * @param string $transactionRefNo The transaction reference number, e.g. 274815.
+     * @param string $uppTransactionId The unique transaction id, e.g. 274815.
      * @return Cancel A Cancel request object ready to execute.
      */
-    public static function cancel($merchantId, $transactionRefNo)
+    public static function cancel($merchantId, $uppTransactionId)
     {
         $guzzle = static::_getHttpClient();
-        $request = new Cancel($guzzle, $merchantId, $transactionRefNo);
+        $request = new Cancel($guzzle, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -95,13 +95,13 @@ class Factory
      * Create a Credit Request
      *
      * @param string $merchantId The merchant ID.
-     * @param string $transactionRefNo The transaction reference number, e.g. 274815.
+     * @param string $uppTransactionId The unique transaction id, e.g. 274815.
      * @return Credit A Credit request object ready to execute.
      */
-    public static function credit($merchantId, $transactionRefNo)
+    public static function credit($merchantId, $uppTransactionId)
     {
         $guzzle = static::_getHttpClient();
-        $request = new Credit($guzzle, $merchantId, $transactionRefNo);
+        $request = new Credit($guzzle, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -111,13 +111,13 @@ class Factory
      * Create a Settlement Request
      *
      * @param string $merchantId The merchant ID.
-     * @param string $transactionRefNo The transaction reference number, e.g. 274815.
+     * @param string $uppTransactionId The unique transaction id, e.g. 274815.
      * @return Settlement A Settlement request object ready to execute.
      */
-    public static function settlement($merchantId, $transactionRefNo)
+    public static function settlement($merchantId, $uppTransactionId)
     {
         $guzzle = static::_getHttpClient();
-        $request = new Settlement($guzzle, $merchantId, $transactionRefNo);
+        $request = new Settlement($guzzle, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -127,13 +127,13 @@ class Factory
      * Create a Status Request
      *
      * @param string $merchantId The merchant ID.
-     * @param string $transactionRefNo The transaction reference number, e.g. 274815.
+     * @param string $uppTransactionId The unique transaction id, e.g. 274815.
      * @return Status A Status request object ready to execute.
      */
-    public static function status($merchantId, $transactionRefNo)
+    public static function status($merchantId, $uppTransactionId)
     {
         $guzzle = static::_getHttpClient();
-        $request = new Status($guzzle, $merchantId, $transactionRefNo);
+        $request = new Status($guzzle, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;

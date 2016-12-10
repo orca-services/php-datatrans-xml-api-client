@@ -49,7 +49,7 @@ class Status extends Base
         $bodyChild->addAttribute('merchantId', $this->_merchantId);
         $requestChild = $bodyChild ->addChild('transaction')->addChild('request');
 
-        $requestChild->addChild('uppTransactionId', $this->_transactionRefNo);
+        $requestChild->addChild('uppTransactionId', $this->_uppTransactionId);
         $requestType = 'STX'; // Extended status
         $requestChild->addChild('reqtype', $requestType);
 

@@ -8,13 +8,13 @@ use OrcaServices\Datatrans\Xml\Api\Factory;
 
 // Set required request data
 $merchantId = '1000011011';
-$transactionRefNo = '407767998123456789';
+$transactionId = '407767998123456789';
 
 // ATTENTION: Use the production environment
 // Factory::setUseProdEnv(true);
 
 // Create a Status Request object through the factory
-$statusRequest = Factory::status($merchantId, $transactionRefNo);
+$statusRequest = Factory::status($merchantId, $transactionId);
 
 // Disable request and response validation
 $statusRequest->setValidate(false);
