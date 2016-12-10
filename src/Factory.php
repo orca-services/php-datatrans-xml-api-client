@@ -68,8 +68,8 @@ class Factory
      */
     public static function authorisation($merchantId, $uppTransactionId)
     {
-        $guzzle = static::_getHttpClient();
-        $request = new Authorisation($guzzle, $merchantId, $uppTransactionId);
+        $httpClient = static::_getHttpClient();
+        $request = new Authorisation($httpClient, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -84,8 +84,8 @@ class Factory
      */
     public static function cancel($merchantId, $uppTransactionId)
     {
-        $guzzle = static::_getHttpClient();
-        $request = new Cancel($guzzle, $merchantId, $uppTransactionId);
+        $httpClient = static::_getHttpClient();
+        $request = new Cancel($httpClient, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -100,8 +100,8 @@ class Factory
      */
     public static function credit($merchantId, $uppTransactionId)
     {
-        $guzzle = static::_getHttpClient();
-        $request = new Credit($guzzle, $merchantId, $uppTransactionId);
+        $httpClient = static::_getHttpClient();
+        $request = new Credit($httpClient, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -116,8 +116,8 @@ class Factory
      */
     public static function settlement($merchantId, $uppTransactionId)
     {
-        $guzzle = static::_getHttpClient();
-        $request = new Settlement($guzzle, $merchantId, $uppTransactionId);
+        $httpClient = static::_getHttpClient();
+        $request = new Settlement($httpClient, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -132,8 +132,8 @@ class Factory
      */
     public static function status($merchantId, $uppTransactionId)
     {
-        $guzzle = static::_getHttpClient();
-        $request = new Status($guzzle, $merchantId, $uppTransactionId);
+        $httpClient = static::_getHttpClient();
+        $request = new Status($httpClient, $merchantId, $uppTransactionId);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;

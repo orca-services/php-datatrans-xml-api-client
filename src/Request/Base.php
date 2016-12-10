@@ -95,15 +95,15 @@ abstract class Base
     /**
      * Construct a request
      *
-     * @param $guzzle
+     * @param Client $httpClient The HTTP client to use.
      * @param string $merchantId The merchant ID.
      * @param string $uppTransactionId The unique transaction id, e.g. 274815.
      */
-    public function __construct($guzzle, $merchantId, $uppTransactionId)
+    public function __construct($httpClient, $merchantId, $uppTransactionId)
     {
         $this->setMerchantId($merchantId);
         $this->setUppTransactionId($uppTransactionId);
-        $this->_client = $guzzle;
+        $this->_client = $httpClient;
     }
 
     /**
