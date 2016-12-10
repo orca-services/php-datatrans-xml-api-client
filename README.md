@@ -18,6 +18,7 @@ TODO
 - Status API request  type Switch (STA/STX)
 - API version switch support
 - "errorEmail" support for Settlement Request
+- Support static & composed "sign" security for Settlement Request
 - Consider using [HTTPlug](http://httplug.io/)
 
 Similar Projects
