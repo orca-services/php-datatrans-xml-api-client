@@ -80,12 +80,15 @@ class Factory
      *
      * @param string $merchantId The merchant ID.
      * @param string $uppTransactionId The unique transaction id, e.g. 274815.
+     * @param string $refNo Merchant order reference number.
+     * @param string $currency Transaction currency - ISO character code (e.g. CHF).
+     * @param int $amount Transaction amount in cents (the smallest unit of the currency) (e.g. 123.50 = 12350).
      * @return Cancel A Cancel request object ready to execute.
      */
-    public static function cancel($merchantId, $uppTransactionId)
+    public static function cancel($merchantId, $uppTransactionId, $refNo, $currency, $amount)
     {
         $httpClient = static::_getHttpClient();
-        $request = new Cancel($httpClient, $merchantId, $uppTransactionId);
+        $request = new Cancel($httpClient, $merchantId, $uppTransactionId, $refNo, $currency, $amount);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
