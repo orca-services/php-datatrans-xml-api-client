@@ -11,7 +11,7 @@ $merchantId = '1000011011';
 $uppTransactionId = '800247117123456789';
 $refNo = '841689';
 $currency = 'CHF';
-$amount = 100; // 123.45
+$amount = 100; // 1.00
 
 // ATTENTION: Use the production environment
 // Factory::setUseProdEnv(true);
