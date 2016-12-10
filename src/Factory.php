@@ -112,12 +112,15 @@ class Factory
      *
      * @param string $merchantId The merchant ID.
      * @param string $uppTransactionId The unique transaction id, e.g. 274815.
+     * @param string $refNo Merchant order reference number.
+     * @param string $currency Transaction currency - ISO character code (e.g. CHF).
+     * @param int $amount Transaction amount in cents (the smallest unit of the currency) (e.g. 123.50 = 12350).
      * @return Settlement A Settlement request object ready to execute.
      */
-    public static function settlement($merchantId, $uppTransactionId)
+    public static function settlement($merchantId, $uppTransactionId, $refNo, $currency, $amount)
     {
         $httpClient = static::_getHttpClient();
-        $request = new Settlement($httpClient, $merchantId, $uppTransactionId);
+        $request = new Settlement($httpClient, $merchantId, $uppTransactionId, $refNo, $currency, $amount);
         $request->setUseProdEnv(static::$_useProdEnv);
 
         return $request;
@@ -140,9 +143,9 @@ class Factory
     }
 
     /**
-     * Get HTTP client
+     * Get the HTTP client
      *
-     * @return Client
+     * @return Client The HTTP client.
      */
     protected static function _getHttpClient()
     {
