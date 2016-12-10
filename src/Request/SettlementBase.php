@@ -120,6 +120,9 @@ abstract class SettlementBase extends Base
         $transactionChild = $bodyChild->addChild('transaction');
         $transactionChild->addAttribute('refno', $this->_refNo);
 
+        // TODO Implement errorEmail
+        //$bodyChild->addChild('errorEmail', 'somebody@example.org');
+
         $requestChild = $transactionChild->addChild('request');
 
         $this->_setRequestXmlElements($requestChild);
