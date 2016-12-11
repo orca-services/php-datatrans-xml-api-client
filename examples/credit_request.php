@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This example show how to setup and send a Credit Request to the Datatrans Payment XML API
+ * This example shows how to setup and send a Credit Request to the Datatrans Payment XML API
  */
 
 // Load Composer Autoloader
