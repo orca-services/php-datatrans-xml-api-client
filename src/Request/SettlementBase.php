@@ -2,7 +2,7 @@
 
 namespace OrcaServices\Datatrans\Xml\Api\Request;
 
-use DoctrineTest\InstantiatorTestAsset\SimpleSerializableAsset;
+use OrcaServices\Datatrans\Xml\Api\DigitalSignature;
 use \Exception;
 use GuzzleHttp\Client;
 
@@ -19,6 +19,11 @@ use GuzzleHttp\Client;
  */
 abstract class SettlementBase extends Base
 {
+
+    /**
+     * Use the digital signature trait
+     */
+    use DigitalSignature;
 
     /**
      * The XML API Endpoint URL
@@ -126,6 +131,7 @@ abstract class SettlementBase extends Base
         $requestChild = $transactionChild->addChild('request');
 
         $this->_setRequestXmlElements($requestChild);
+        $this->_setDigitalSignature($requestChild);
 
         $xml = $xml->asXML();
 
@@ -139,6 +145,43 @@ abstract class SettlementBase extends Base
      * @return void
      */
     abstract protected function _setRequestXmlElements($requestChild);
+
+    /**
+     * Set the digital signature for the Request XML
+     *
+     * @param \SimpleXMLElement $requestChild The request XML element to set the signature into.
+     * @return void
+     * @throws Exception If an invalid digital signature security level is set.
+     * @todo Consider extracting part of it into a trait or utility function.
+     */
+    protected function _setDigitalSignature($requestChild)
+    {
+        $signSecurityLevel = static::$_signSecurityLevel;
+        $signature = static::$_signature;
+        if ($signSecurityLevel === 0) {
+            return;
+        }
+        if ($signSecurityLevel === 1) {
+            $requestChild->addChild('sign', $signature);
+
+            return;
+        }
+        if ($signSecurityLevel === 2) {
+            $signatureData = sprintf(
+                '%s%s%s%s',
+                $this->_merchantId,
+                $this->_amount,
+                $this->_currency,
+                trim($this->_refNo)
+            );
+            $signature = hash_hmac('sha256', $signatureData, hex2bin($signature));
+            $requestChild->addChild('sign', $signature);
+
+            return;
+        }
+
+        throw new Exception('Invalid digital signature security level: ' . $signSecurityLevel);
+    }
 
     /**
      * Process the response

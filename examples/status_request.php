@@ -26,7 +26,7 @@ $requestOptions = array(
 $httpClient = Factory::httpClient($requestOptions);
 
 // ATTENTION: Use the production environment
-// Factory::setUseProdEnv(true);
+//Factory::setUseProdEnv(true);
 
 // Create a Status Request object through the factory
 $statusRequest = Factory::status($merchantId, $transactionId);

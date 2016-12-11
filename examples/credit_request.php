@@ -29,7 +29,11 @@ $requestOptions = array(
 $httpClient = Factory::httpClient($requestOptions);
 
 // ATTENTION: Use the production environment
-// Factory::setUseProdEnv(true);
+//Factory::setUseProdEnv(true);
+
+// Optionally set the digital sign security level and signature
+//Factory::setSignSecurityLevel(1);
+//Factory::setSignature('123');
 
 // Create a Credit Request object through the factory
 $creditRequest = Factory::credit($merchantId, $uppTransactionId, $refNo, $currency, $amount);

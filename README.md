@@ -25,12 +25,10 @@ TODO
 - Travis CI integration
 - Scrutinizer CI integration
 - Logging integration
-- Support for "Digital signature" (sign & sign2)
 - Better request & response abstraction
 - Status API request type switch (STA/STX) support
 - General API version switch support
 - "errorEmail" support for Settlement Request
-- Support static & composed "sign" security for Settlement Request
 - Consider using [HTTPlug](http://httplug.io/)
 - Adapt some more PHP packages best practices
 

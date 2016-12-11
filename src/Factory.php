@@ -29,6 +29,10 @@ use \InvalidArgumentException;
  */
 class Factory
 {
+    /**
+     * Use the digital signature trait
+     */
+    use DigitalSignature;
 
     /**
      * The HTTP client
@@ -54,7 +58,7 @@ class Factory
     public static function setUseProdEnv($useProdEnv)
     {
         if (!is_bool($useProdEnv)) {
-            throw new InvalidArgumentException('Not a boolean');
+            throw new InvalidArgumentException('Given $useProdEnv is not a boolean.');
         }
         static::$_useProdEnv = $useProdEnv;
     }
@@ -91,6 +95,9 @@ class Factory
         $request = new Cancel($httpClient, $merchantId, $uppTransactionId, $refNo, $currency, $amount);
         $request->setUseProdEnv(static::$_useProdEnv);
 
+        $request::setSignSecurityLevel(static::$_signSecurityLevel);
+        $request::setSignature(static::$_signature);
+
         return $request;
     }
 
@@ -110,6 +117,9 @@ class Factory
         $request = new Credit($httpClient, $merchantId, $uppTransactionId, $refNo, $currency, $amount);
         $request->setUseProdEnv(static::$_useProdEnv);
 
+        $request::setSignSecurityLevel(static::$_signSecurityLevel);
+        $request::setSignature(static::$_signature);
+
         return $request;
     }
 
@@ -128,6 +138,9 @@ class Factory
         $httpClient = static::httpClient();
         $request = new Settlement($httpClient, $merchantId, $uppTransactionId, $refNo, $currency, $amount);
         $request->setUseProdEnv(static::$_useProdEnv);
+
+        $request::setSignSecurityLevel(static::$_signSecurityLevel);
+        $request::setSignature(static::$_signature);
 
         return $request;
     }
