@@ -3,23 +3,37 @@ Datatrans Payment XML API PHP Client
 
 A PHP client library for the [Datatrans Payment XML API](https://www.datatrans.ch/showcase/).
 
+Installation
+------------
+
+You can install this library through [Composer](https://getcomposer.org/).
+
+````bash
+$ composer require orca-services/datatrans-xml-api-client
+````
+
+Documentation
+-------------
+
+Check out the [documentation](docs/Home.md) on how to use this library.
+
 TODO
 ----
 
-- Documentation
 - Authorisation API
 - Settlement API
 - Unit tests
 - Travis CI integration
 - Scrutinizer CI integration
-- Logger integration
+- Logging integration
 - Support for "Digital signature" (sign & sign2)
 - Better request & response abstraction
-- Status API request  type Switch (STA/STX)
-- API version switch support
+- Status API request type switch (STA/STX) support
+- General API version switch support
 - "errorEmail" support for Settlement Request
 - Support static & composed "sign" security for Settlement Request
 - Consider using [HTTPlug](http://httplug.io/)
+- Adapt some more PHP packages best practices
 
 Similar Projects
 ----------------

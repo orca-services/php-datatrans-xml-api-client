@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This example show how to setup and send a Settlement Request to the Datatrans Payment XML API
+ */
+
 // Load Composer Autoloader
 require '../vendor/autoload.php';
 
