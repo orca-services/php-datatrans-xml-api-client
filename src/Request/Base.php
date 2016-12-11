@@ -61,7 +61,7 @@ abstract class Base
      *
      * @var bool
      */
-    protected $_validate = true;
+    protected $_xmlValidation = true;
 
     /**
      * The merchant ID
@@ -124,12 +124,12 @@ abstract class Base
     /**
      * Set whether to validate the requests and responses
      *
-     * @param bool $validate Whether to validate the requests and reponses.
+     * @param bool $validate Whether to validate the requests and responses.
      * @return self
      */
-    public function setValidate($validate)
+    public function setXmlValidation($validate)
     {
-        $this->_validate = $validate;
+        $this->_xmlValidation = $validate;
 
         return $this;
     }
@@ -250,7 +250,7 @@ abstract class Base
      */
     protected function _validateXml($xml, $xmlSchema)
     {
-        if (!$this->_validate) {
+        if (!$this->_xmlValidation) {
             return true;
         }
         libxml_use_internal_errors(true);
