@@ -1,6 +1,8 @@
 Datatrans XML API Authorisation Request
 =======================================
 
+TODO Not yet implemented.
+
 The Authorisation Request can be used authorise a transactions.
 
 - See [XML Authorisation showcase](https://www.datatrans.ch/showcase/authorisation/xml-authorisation).

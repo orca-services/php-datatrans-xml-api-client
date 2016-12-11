@@ -15,7 +15,7 @@ Requests
 
 The available request types are:
 
-- [Authorisation](Request/Authorisation.md)
+- [Authorisation](Request/Authorisation.md) (not yet implemented)
 - [Cancel](Request/Cancel.md)
 - [Credit](Request/Credit.md)
 - [Settlement](Request/Settlement.md)
