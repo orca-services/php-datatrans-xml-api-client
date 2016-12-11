@@ -21,7 +21,6 @@ TODO
 ----
 
 - Authorisation API
-- Settlement API
 - Unit tests
 - Travis CI integration
 - Scrutinizer CI integration
