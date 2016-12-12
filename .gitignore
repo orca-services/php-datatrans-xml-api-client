@@ -4,7 +4,7 @@
 /vendor
 /phpunit.xml
 /phpcs.xml
-*.mox
+*.mo
 
 # IDE and editor specific files #
 #################################
