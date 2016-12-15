@@ -43,7 +43,7 @@ trait DigitalSignature
     /**
      * Set the digital signature to use
      *
-     * @param string $signature he digital signature to use.
+     * @param string $signature The digital signature to use.
      * @return void
      * @throws \InvalidArgumentException When not a string given.
      */
