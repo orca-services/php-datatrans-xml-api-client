@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased](https://github.com/orca-services/php-datatrans-xml-api-client)
 ### Added
 - Link to class API documentation
+- Add ApiGen config file
 
 ### Changed
 
