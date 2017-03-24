@@ -27,6 +27,12 @@ Examples
 In the [examples folder](../examples/) there are example implementations
 each requests.
 
+Class API Documentation
+-----------------------
+
+The up to date class API docs can be found at
+https://codedoc.pub/orca-services/php-datatrans-xml-api-client/.
+
 Additional Resources
 --------------------
 
