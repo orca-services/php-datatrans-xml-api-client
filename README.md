@@ -17,6 +17,12 @@ Documentation
 
 Check out the [documentation](docs/Home.md) on how to use this library.
 
+
+Change log
+----------
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
 TODO
 ----
 
